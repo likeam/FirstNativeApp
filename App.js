@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
@@ -16,43 +16,73 @@ export default function App() {
   }
   console.log(courseGoals);
   return (
+    <ImageBackground source={{uri: 'https://images.unsplash.com/photo-1601191362988-ac6ebec629c8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}} style={{width: '100%', height: '100%'}}>
     <View style={styles.appContainer}>
-      <View>
-        <TextInput onChangeText={addTextHandler} style={styles.inputContainer} placeholder='Your Course Goal!' />
-        <View style={styles.buttonContainer}>
-        <Button onPress={addGoalHandler} title='Add Goal'/>
+      
+        <View>
+          <TextInput onChangeText={addTextHandler} style={styles.inputContainer} placeholder='Your Course Goal!' />
+          
+          <TouchableOpacity onPress={addGoalHandler}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}> Add Goalss</Text>
+            </View>
+          </TouchableOpacity>      
         </View>
-      </View>
-      <View>
-        {courseGoals.map((goal) => <Text style={styles.goalItem} key={goal}>{goal}</Text>)}
-      </View>
-      <StatusBar style="auto" />
+        <View>
+          <ScrollView>
+          {courseGoals.map((goal) => <Text style={styles.goalItem} key={goal}>{goal}</Text>)}
+          </ScrollView>
+        </View>
+        
+        <StatusBar style="auto" />
+      
     </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  
   appContainer: {
-    flex:1,
-    justifyContent: 'center',
+    paddingTop: 50,
+    paddingHorizontal:40, 
+   
+
+  },
+
+  inputContainer :{
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 2,
+    margin: 4,
+    width: 280,
+  },
+
+  button: {
+    marginBottom: 30,
+    width: 260,
     alignItems: 'center',
-    
-     },
-     inputContainer :{
-      borderWidth: 1,
-      borderColor: 'grey',
-      padding: 2,
-      margin: 4,
-      width: 280,
-     },
-      buttonContainer:{
-      paddingHorizontal: 40,
-     },
-     goalItem:{
-      padding: 8,
-      margin: 8,
-      borderRadius: 6,
-      color: 'white',
-      backgroundColor: 'green',
-     }
-    });
+    backgroundColor: 'darkgreen',
+    borderRadius: 8,
+  
+
+
+
+  },
+
+  buttonText: {
+    textAlign: 'center',
+    padding: 20,
+    color: 'white',
+  },
+
+  goalItem:{
+    padding: 8,
+    margin: 8,
+    borderRadius: 6,
+    color: 'black',
+    backgroundColor: 'goldenrod',
+    borderWidth: 2,
+    borderColor: 'darkgoldenrod',
+  }
+});
