@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
+import {  StyleSheet, Text, TextInput, View, ImageBackground, TouchableOpacity, FlatList } from 'react-native';
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
@@ -29,9 +29,15 @@ export default function App() {
           </TouchableOpacity>      
         </View>
         <View>
-          <ScrollView>
-          {courseGoals.map((goal) => <Text style={styles.goalItem} key={goal}>{goal}</Text>)}
-          </ScrollView>
+          < FlatList
+            data={courseGoals} 
+            renderItem={itemData =>  {
+              <View>
+                <Text style={styles.goalItem}>{itemData.item}</Text>
+              </View>
+            }} 
+            alwaysBounceVertical={false}     
+          />
         </View>
         
         <StatusBar style="auto" />
