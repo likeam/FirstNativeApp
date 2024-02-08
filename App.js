@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import {  StyleSheet, Text, TextInput, View, ImageBackground, TouchableOpacity, FlatList } from 'react-native';
+console.log(txt);
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
